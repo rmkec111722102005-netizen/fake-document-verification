@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aadhaar, Smart Card, and Transfer Certificate Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="date"], select, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Aadhaar Verification</h1>
+    <form action="/upload_image" method="post" enctype="multipart/form-data">
+        <label for="image">Select Image:</label>
+        <input type="file" name="image" accept="image/*" required>
+        <br>
+        <label for="pdf">Select PDF:</label>
+        <input type="file" name="pdf" accept="application/pdf" required>
+        <br>
+        <input type="submit" value="Compare">
+    </form>
+    <form action="/upload_aadhaar" method="post" enctype="multipart/form-data">
+        <label for="aadhaar_number">Aadhaar Number:</label>
+        <input type="text" id="aadhaar_number" name="aadhaar_number" required><br>
+
+        <label for="name">Aadhaar Holder Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob"required><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+           
+        </select><br>
+
+        <label for="aadhaar_certificate">Upload Aadhaar (PDF):</label>
+        <input type="file" id="aadhaar_certificate" name="aadhaar_certificate" accept=".pdf" required><br>
+
+        <input type="submit" value="Verify Aadhaar">
+    </form>
+
+    <h1>Smart Card Verification</h1>
+    <form action="/upload_ration_card" method="post" enctype="multipart/form-data">
+        <label for="ration_card_number">Ration Card Number:</label>
+        <input type="text" id="ration_card_number" name="ration_card_number" required><br>
+
+        <label for="ration_card_name">Ration Card Holder Name:</label>
+        <input type="text" id="ration_card_name" name="ration_card_name" required><br>
+
+        <label for="ration_card_gender">Ration Card Holder Gender:</label>
+        <select id="ration_card_gender" name="ration_card_gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br>
+
+        <label for="ration_card_certificate">Upload Ration Card (PDF):</label>
+        <input type="file" id="ration_card_certificate" name="ration_card_certificate" accept=".pdf" required><br>
+
+        <input type="submit" value="Verify Ration Card">
+    </form>
+
+    <h1>Transfer Certificate (TC) Application</h1>
+    <form action="/upload_tc" method="post" enctype="multipart/form-data">
+
+        <label for="student_name">Student Name:</label>
+        <input type="text" id="student_name" name="student_name" required><br>
+
+        <label for="father_name">Father's Name:</label>
+        <input type="text" id="father_name" name="father_name" required><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="text" id="dob" name="dob" required><br>
+
+        <label for="class">Last Studied Class:</label>
+        <input type="text" id="class" name="class" required><br>
+
+        <label for="school_name">School Name:</label>
+        <input type="text" id="school_name" name="school_name" required><br>
+
+        <label for="admission_date">Date of Admission:</label>
+        <input type="text" id="admission_date" name="admission_date" required><br>
+
+        <label for="reason">Reason for Leaving School:</label>
+        <input type="text" id="reason" name="reason" required><br>
+
+        <label for="tc_certificate">Upload Transfer Certificate (PDF):</label>
+        <input type="file" id="tc_certificate" name="tc_certificate" accept=".pdf" required><br>
+
+        <input type="submit" value="Submit Transfer Certificate Application">
+    </form>
+    
+   
+    <div class="result" id="result">
+        <!-- Result message will be shown here (Match/Mismatch) -->
+    </div>
+
+</body>
+</html>
